@@ -2,6 +2,8 @@
 
 [![MIT License](https://img.shields.io/github/license/DidierMalenfant/Yap)](https://spdx.org/licenses/MIT.html) [![Lua Version](https://img.shields.io/badge/Lua-5.4-yellowgreen)](https://lua.org) [![Toybox Powered](https://img.shields.io/badge/toybox.py-powered-orange)](https://toyboxpy.io) [![Latest Version](https://img.shields.io/github/v/tag/DidierMalenfant/Yap)](https://github.com/DidierMalenfant/Yap/tags)
 
+![Yap! in action...](art/screenshot.gif)
+
 The name says it all... I'm going to use this project as a showcase for my platformer engine [**Aspen**](https://github.com/DidierMalenfant/Aspen).
 
 This will start small since both [**Aspen**](https://github.com/DidierMalenfant/Aspen) and [**tiled-up**](https://github.com/DidierMalenfant/tiled-up), which **Aspen** uses, are in active development right now.
