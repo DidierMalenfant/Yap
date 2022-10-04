@@ -18,7 +18,7 @@ function Main:init()
     self.engine:setBackgroundImage('assets/backgrounds/night-sky')
 
     local image_table_path = 'assets/sprites/player'
-    if playdate.file.exists('assets.private/sprites') then
+    if playdate.file.exists('assets.private/sprites/player.pdt') then
         -- If we found the private version of the player, we replace the placeholder one.
         image_table_path = 'assets.private/sprites/player'
     end
