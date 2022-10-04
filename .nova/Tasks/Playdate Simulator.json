@@ -1,0 +1,21 @@
+{
+  "actions" : {
+    "build" : {
+      "preActions" : [
+        {
+          "script" : "#!\/bin\/sh\nFILE=.\/source\/pdxinfo\nVERSION=$(cat $FILE | grep buildNumber | tr -dc '0-9')\necho \"> CURRENT VERSION: $VERSION\"\n\nNEW=$((VERSION+1))\n\nsed -i .inplace \"s\/buildNumber=[0-9]*\/buildNumber=$NEW\/g\" $FILE\nif [ $? -eq 0 ]; then\n   rm $FILE.inplace\n   echo \"> NEW VERSION: $NEW\"\nelse\n   echo \"Error updating build number.\"\n   rm $FILE\n   mv $FILE.inplace $FILE\n   return 1\nfi",
+          "type" : "runScript"
+        }
+      ]
+    }
+  },
+  "extension" : {
+    "identifier" : "com.panic.Playdate",
+    "name" : "Playdate"
+  },
+  "extensionTemplate" : "simulator",
+  "extensionValues" : {
+
+  },
+  "openLogOnRun" : "fail"
+}

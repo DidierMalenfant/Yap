@@ -1,0 +1,67 @@
+[
+    {
+        "name": "default",
+        "tickStep": 2
+    },    
+    {
+        "name":"idleleft",
+        "firstFrameIndex": 1,
+        "framesCount": 7
+    },
+    {
+        "name":"walkleftstart",
+        "firstFrameIndex": 8,
+        "framesCount": 2,
+        "nextAnimation": "walkright"
+    },
+    {
+        "name":"walkleft",
+        "firstFrameIndex": 10,
+        "framesCount": 6
+    },
+    {
+        "name":"walkleftstop",
+        "firstFrameIndex": 16,
+        "framesCount": 2,
+        "nextAnimation": "idleleft"
+    },
+    {
+        "name":"turnlefttoright",
+        "firstFrameIndex": 18,
+        "framesCount": 5,
+        "nextAnimation": "idleright"
+    },
+    {
+        "name":"idleright",
+        "firstFrameIndex": 1,
+        "framesCount": 7,
+        "flip": 1
+    },
+    {
+        "name":"walkrightstart",
+        "firstFrameIndex": 8,
+        "framesCount": 2,
+        "nextAnimation": "walkright",
+        "flip": 1
+    },
+    {
+        "name":"walkright",
+        "firstFrameIndex": 10,
+        "framesCount": 6,
+        "flip": 1
+    },
+    {
+        "name":"walkrightstop",
+        "firstFrameIndex": 16,
+        "framesCount": 2,
+        "nextAnimation": "idleright",
+        "flip": 1
+    },
+    {
+        "name":"turnrighttoleft",
+        "firstFrameIndex": 18,
+        "framesCount": 5,
+        "nextAnimation": "idleleft",
+        "flip": 1
+    }
+]

@@ -1,0 +1,7 @@
+name=Yap
+author=Didier Malenfant
+description=Yet Another Platformer.
+bundleID=net.malenfant.yap
+version=0.1
+buildNumber=240
+imagePath=SystemAssets
