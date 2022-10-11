@@ -1,11 +1,14 @@
 {
     "toyboxes": {
+        "DidierMalenfant/Plupdate": "1",
         "DidierMalenfant/Aspen": "0 >=0.0.2"
     },
     "installed": {
-        "github.com/DidierMalenfant/Aspen": "v0.0.2",
-        "github.com/DidierMalenfant/tiled-up": "v0.1.3",
-        "github.com/DidierMalenfant/pdbase": "v1.4.0",
+        "github.com/DidierMalenfant/Plupdate": "v1.1.1",
+        "github.com/DidierMalenfant/Aspen": "v0.0.3",
+        "github.com/DidierMalenfant/pdbase": "v1.4.1",
+        "github.com/DidierMalenfant/TiledUp": "v0.1.4",
+        "github.com/DidierMalenfant/FontSample": "v1.0.1",
         "github.com/Whitebrim/AnimatedSprite": "v1.0.0"
     }
 }

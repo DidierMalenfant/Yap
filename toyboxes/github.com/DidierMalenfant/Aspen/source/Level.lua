@@ -25,29 +25,32 @@ function aspen.Level:init(pathToLevelJSON)
 	self.level = tiledup.Level(pathToLevelJSON)
 	assert(self.level, 'Error importing Tiled level file.')
 
-	self.level_width = 0
-	self.level_height = 0
+	self.width = 0
+	self.height = 0
 
 	for _, layer in pairs(self.level.layers) do
-		self.level_width = max(self.level_width, layer.pixelWidth)
-		self.level_height = max(self.level_height, layer.pixelHeight)
+		self.width = max(self.width, layer.pixelWidth)
+		self.height = max(self.height, layer.pixelHeight)
 	end
 
-	self:setBounds(0, 0, self.level_width, self.level_height)
+	-- This is to make sure our level 'sprite' always gets drawn.
+	self:setBounds(0, 0, self.width, self.height)
 
 	self.min_x = 0
-	self.max_x = self.level_width - display_width - self.level.tile_width
+	self.max_x = self.width - display_width - self.level.tile_width
 
 	self.camera_x = 0
-	self.camera_Y = 0
+	self.camera_y = 0
 
 	self:setupWallSprites()
 
 	self:addSprite()
+
+	Plupdate.iWillBeUsingSprites()
 end
 
 function aspen.Level:size()
-	return self.level_width, self.level_height
+	return self.width, self.height
 end
 
 function aspen.Level:setupWallSprites()
@@ -64,14 +67,16 @@ function aspen.Level:setupWallSprites()
 				local gid = tilemap:getTileAtPosition(column, row)
 				if gid and empty_ids[gid] == nil then
 					local cellWidth = self.level.tile_width
-					local w = gfx.sprite.new()
+					local cellHeight = self.level.tile_height
+
+					local w = gfx.sprite.new()					
+					w:setBounds(x, y, cellWidth, cellHeight)
+					w:setCollideRect(0, 0, cellWidth, cellHeight)
 					w:setUpdatesEnabled(false) -- remove from update cycle
 					w:setVisible(false) -- invisible sprites can still collide
-					w:setCenter(0,0)
-					w:setBounds(x, y, cellWidth, self.level.tile_width)
-					w:setCollideRect(0, 0, cellWidth, self.level.tile_height)
 					w:setImageDrawMode(playdate.graphics.kDrawModeCopy)
 					w:addSprite()
+
 					w.gid = gid
 					w.column = column
 					w.row = row
@@ -88,25 +93,19 @@ function aspen.Level:setupWallSprites()
 	end
 
 	-- We add left, right and bottom borders to the entire level
-	gfx.sprite.addEmptyCollisionSprite(0, 0, 1, self.level_height)
-	gfx.sprite.addEmptyCollisionSprite(self.level_width - 1, 0, self.level_width, self.level_height)
-	gfx.sprite.addEmptyCollisionSprite(0, self.level_height + 1, self.level_width, self.level_height + 1)
+	gfx.sprite.addEmptyCollisionSprite(-1, -1, -1, self.height)
+	gfx.sprite.addEmptyCollisionSprite(self.width, -1, self.width, self.height)
+	gfx.sprite.addEmptyCollisionSprite(-1, self.height, self.width, self.height)
+	gfx.sprite.addEmptyCollisionSprite(-1, -1, self.width, -1)
 end
 
-
 function aspen.Level:updateCameraPosition(x, y)
-	self.camera_x = x
-	self.camera_y = y
+	self.camera_x = math.clamp(x, 0, self.width - display_width)
+	self.camera_y = math.clamp(self.height - y, 0, self.height - display_height)
 end
 
 function aspen.Level:update()
-	-- TODO: dynamically load and unload sprites as the player moves around the level
-	self.camera_x = max(self.camera_x, 0)
-	self.camera_x = min(self.camera_x, self.level_width - display_width)
-
-	self.camera_y = max(self.camera_y, 0)
-	self.camera_y = min(self.camera_y, self.level_height - display_height)
-
+	-- TODO: dynamically load and unload collision sprites as the player moves around the level
 	gfx.setDrawOffset(-self.camera_x, -self.camera_y)
 end
 

@@ -14,16 +14,31 @@ local display_width <const>, display_height <const> = playdate.display.getSize()
 
 aspen = aspen or {}
 
-class('Engine', { background_image = nil, level = nil, player = nil }, aspen).extends()
+class('Engine', { background_image = nil, level = nil, player = nil, camera_y_offset = 0 }, aspen).extends()
 
 function aspen.Engine:init()
     -- Call our parent init() method.
     aspen.Engine.super.init(self)
+    
+    FontSample.setFont()
+    
+    Plupdate.iWillBeUsingSprites()
 end
 
 function aspen.Engine:createPlayer(image_table_path, states_path, physics)
     self.player = aspen.Player(image_table_path, states_path, physics)
     assert(self.player, 'Error loading character.')
+    
+    self.player.level_height = self.level.height
+    
+    self.player:setPlayerMovedCallback(function(x, y)
+        -- If we have a level loaded, when the player moves we update the level position
+        if self.level == nil then
+            return
+        end
+
+        self.level:updateCameraPosition(x - (display_width / 2), y + (display_height / 2) + self.camera_y_offset)
+    end)
 end
 
 function aspen.Engine:loadLevel(level_path)
@@ -43,17 +58,6 @@ function aspen.Engine:setBackgroundImage(image_path)
     end)    
 end
 
-function aspen.Engine:update()
-    if playdate.buttonIsPressed(playdate.kButtonRight) then
-        self.player:goRight()
-    elseif playdate.buttonIsPressed(playdate.kButtonLeft) then
-        self.player:goLeft()
-    end
-    
-    if playdate.buttonIsPressed(playdate.kButtonA) then
-        self.player:jump()
-    end
-    
-    self.level:updateCameraPosition(self.player.x - (display_width / 2),
-                                    self.player.y - (display_height / 2) + 20)
+function aspen.Engine:setCameraYOffset(offset)
+    self.camera_y_offset = offset
 end

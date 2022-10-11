@@ -6,7 +6,7 @@
 
 The name says it all... I'm going to use this project as a showcase for my platformer engine [**Aspen**](https://github.com/DidierMalenfant/Aspen).
 
-This will start small since both [**Aspen**](https://github.com/DidierMalenfant/Aspen) and [**tiled-up**](https://github.com/DidierMalenfant/tiled-up), which **Aspen** uses, are in active development right now.
+This will start small since both [**Aspen**](https://github.com/DidierMalenfant/Aspen) and [**TiledUp**](https://github.com/DidierMalenfant/TiledUp), which **Aspen** uses, are in active development right now.
 
 ## Can I create my own levels?
 

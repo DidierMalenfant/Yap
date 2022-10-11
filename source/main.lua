@@ -2,9 +2,6 @@
 --
 -- SPDX-License-Identifier: MIT
 
-import "CoreLibs/graphics"
-import "CoreLibs/timer"
-import "CoreLibs/frameTimer"
 import "CoreLibs/object"
 
 import "../toyboxes/toyboxes.lua"
@@ -22,27 +19,22 @@ function Main:init()
         -- If we found the private version of the player, we replace the placeholder one.
         image_table_path = 'assets.private/sprites/player'
     end
+
+    self.engine:loadLevel('assets/levels/level-one.tmj')
     
-    -- We want player's update() to be called before the level's, so add it here first.
     self.engine:createPlayer(image_table_path, 'assets/sprites/player-states.json', aspen.PlayerPhysics())
-    self.engine.player:moveTo(20, 50)
     self.engine.player:setJumpSound('assets/sounds/jump')
+    self.engine.player:setPos(70, 0)
+    self.engine.player:setCenter(75, 90)
+    
     -- This will be set based on the sprite animation frames eventually.
-    self.engine.player:setCollideRect(64, 30, 20, 59)
+    self.engine.player:setCollideRect(64, 30, 20, 60)
 
-    self.engine:loadLevel('assets/levels/level-one.tmj')    
+    self.engine:setCameraYOffset(50)
+
+    Plupdate.addPostCallback(function()
+        playdate.drawFPS(385,0)
+    end)
 end
 
-local main = Main()
-
-function playdate.update()
-    -- Update the engine.
-    main.engine:update()
-
-    -- Update all the playdate SDK systems.
-    playdate.graphics.sprite.update()
-    playdate.timer.updateTimers()
-    playdate.frameTimer.updateTimers()
-
-    playdate.drawFPS(385,0)
-end
+Main()

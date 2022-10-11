@@ -12,7 +12,7 @@
         "name":"walkleftstart",
         "firstFrameIndex": 8,
         "framesCount": 2,
-        "nextAnimation": "walkright"
+        "nextAnimation": "walkleft"
     },
     {
         "name":"walkleft",
@@ -28,8 +28,9 @@
     {
         "name":"turnlefttoright",
         "firstFrameIndex": 18,
-        "framesCount": 5,
-        "nextAnimation": "idleright"
+        "framesCount": 6,
+        "nextAnimation": "walkrightstart",
+        "flip": 1
     },
     {
         "name":"idleright",
@@ -60,8 +61,7 @@
     {
         "name":"turnrighttoleft",
         "firstFrameIndex": 18,
-        "framesCount": 5,
-        "nextAnimation": "idleleft",
-        "flip": 1
+        "framesCount": 6,
+        "nextAnimation": "walkleftstart"
     }
 ]
