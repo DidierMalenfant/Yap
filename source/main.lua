@@ -32,6 +32,9 @@ function Main:init()
 
     self.engine:setCameraYOffset(50)
 
+    -- We can use this to put the game in slow-mo when debugging.
+    --Plupdate.onlyUpdateOneFrameEvery(10)
+
     Plupdate.addPostCallback(function()
         playdate.drawFPS(385,0)
     end)
