@@ -1,0 +1,9 @@
+{
+    "toyboxes": {
+        "DidierMalenfant/Plupdate": "2",
+        "DidierMalenfant/pdbase": "2",
+        "DidierMalenfant/TiledUp": "0 >=0.1.1",
+        "DidierMalenfant/FontSample": "2",
+        "Whitebrim/AnimatedSprite": "1"
+    }
+}

@@ -8,6 +8,6 @@ _RELATIVE_DIR := $(subst /$(notdir $(_RELATIVE_FILE_PATH)),,$(_RELATIVE_FILE_PAT
 uniq = $(if $1,$(firstword $1) $(call uniq,$(filter-out $(firstword $1),$1)))
 UINCDIR := $(call uniq, $(UINCDIR) $(_RELATIVE_DIR))
 
-PDBASE_MAKEFILE := $(_RELATIVE_DIR)/github-dot-com/DidierMalenfant/pdbase/pdbase.mk
+PDBASE_MAKEFILE := $(_RELATIVE_DIR)/github.com/DidierMalenfant/pdbase/pdbase.mk
 
 include $(PDBASE_MAKEFILE)

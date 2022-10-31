@@ -8,6 +8,9 @@ import "../toyboxes/toyboxes.lua"
 
 class('Main', { engine = nil }).extends()
 
+local aspen <const> = dm.aspen
+local Plupdate <const> = dm.Plupdate
+
 function Main:init()
     Main.super.init(self)
 

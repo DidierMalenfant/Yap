@@ -3,5 +3,5 @@ author=Didier Malenfant
 description=Yet Another Platformer.
 bundleID=net.malenfant.yap
 version=0.0.3
-buildNumber=704
+buildNumber=710
 imagePath=SystemAssets
